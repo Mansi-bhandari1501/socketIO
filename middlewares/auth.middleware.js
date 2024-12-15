@@ -4,7 +4,6 @@ import UserModel from "../models/user.model.js";
 export const authentication = async (req, res, next) => {
   try {
     const token = req.header("Authorization");
-    console.log(token)
     if (!token) {
       return res
         .status(401)
