@@ -9,7 +9,7 @@ export const handleSocketEvents = (socket, io) => {
     
     socket.on("message", ({ chatRoomId, content, senderId }) => {
         const payload = { chatRoomId, content, senderId }
-        sendMessage(socket,io,payload);
+        sendMessage(io,payload);
     });
 
     socket.on("disconnect", () => {

@@ -1,6 +1,5 @@
 
 import chatModel from '../models/chat.model.js';
-import { io } from '../server.js';
 import messageModel from './../models/message.model.js';
 
 export const getAllMessages = async (params,query) => {
@@ -26,12 +25,12 @@ export const getAllMessages = async (params,query) => {
     }
 };
 
-export const sendMessage = async (payload, user) => {
-    const { content, chatRoomId } = payload;
+export const sendMessage = async (io, payload) => {
+    const { content, chatRoomId, senderId } = payload;
     const chatRoomExists = await chatModel.findOne({chatRoomId});
     try {
         const messsage = {
-            sender: user._id,
+            sender: senderId,
             content: content,
             chatRoomId: chatRoomExists.chatRoomId
         };
